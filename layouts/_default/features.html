@@ -1,0 +1,31 @@
+{{ define "content" }}
+
+<h1>{{ .Title }}</h1>
+
+{{ .Content }}
+
+<div class="features">
+  {{ $features := ((.Site.GetPage "section" "/features").Pages).ByDate.Reverse }}
+  {{ range $feature := $features }}
+  <div class="feature">
+    <div class="feature-inner">
+
+      {{ if $feature.Params.image_thumbnail }}
+      <a class="feature-thumbnail" href="{{ $feature.URL }}">
+        <img src="{{ $feature.Params.image_thumbnail | relURL }}" alt="{{ $feature.Title }}" />
+      </a>
+      {{ end }}
+
+      <div class="feature-content">
+        <h2>
+          <a href="{{ $feature.URL }}">{{ $feature.Params.title }}</a>
+        </h2>
+        <p>{{ $feature.Params.description }}</p>
+      </div>
+
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+{{ end }}

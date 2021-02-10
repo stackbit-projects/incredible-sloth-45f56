@@ -1,0 +1,34 @@
+{
+    "ssg": [
+        {
+            "title": "Jekyll",
+            "url": "https://jekyllrb.com"
+        },
+        {
+            "title": "Hugo",
+            "url": "https://gohugo.io"
+        },
+        {
+            "title": "Gatsby",
+            "url": "https://www.gatsbyjs.org"
+        }
+    ],
+    "cms": [
+        {
+            "title": "Forestry",
+            "url": "https://forestry.io"
+        },
+        {
+            "title": "Netlify CMS",
+            "url": "https://www.netlifycms.org"
+        },
+        {
+            "title": "DatoCMS",
+            "url": "https://www.datocms.com"
+        },
+        {
+            "title": "Contentful",
+            "url": "https://www.contentful.com"
+        }
+    ]
+}

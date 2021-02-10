@@ -1,0 +1,15 @@
+<header class="site-header">
+  <div class="site-header-inner">
+  <div class="site-branding">
+    <img class="site-logo" alt="Site logo" src="{{ .Site.Params.logo | relURL }}"/>
+    <h1 class="site-title"><a href='{{ .Site.BaseURL | relURL }}'>{{ .Site.Title }}</a></h1>
+  </div>
+  {{ if .Site.Menus.main }}
+  <nav class="site-navigation">
+    {{ $menu := .Site.Menus.main }}
+    {{ $include_dict := dict "menu" $menu "page" . }}
+    {{ partial "menu.html" $include_dict }}
+  </nav>
+  {{ end }}
+  </div>
+</header>

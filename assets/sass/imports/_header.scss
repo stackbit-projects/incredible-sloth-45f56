@@ -1,0 +1,121 @@
+.site-header {
+  border-bottom: 1px solid #CCC;
+  color: $primary;
+  margin-bottom: 3.75em;
+  padding: 20px;
+}
+
+.site-header-inner {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  @media only screen and (min-width: 801px) {
+    align-items: center;
+    display: flex;
+  }
+}
+
+.site-logo {
+  display: inline-block;
+  vertical-align: middle;
+  width: 36px;
+  margin-right: 3px;
+}
+.site-title {
+  display: inline-block;
+  vertical-align: middle;
+  color: $secondary;
+  font-size: 1.875rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0;
+  a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      opacity: 1;
+    }
+  }
+}
+
+
+.site-navigation {
+  margin-top: 1.875em;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    line-height: 1.5;
+
+    &.current {
+      color: $primary;
+    }
+
+    ul {
+      font-size: 0.875rem;
+      padding-left: 0.75em;
+    }
+  }
+
+  a {
+    color: inherit;
+    display: block;
+    padding: 0.5rem 0;
+
+    &:hover,
+    &:focus {
+      color: $primary;
+    }
+  }
+}
+
+@media only screen and (min-width: 801px) {
+  .site-navigation {
+    margin-left: auto;
+    margin-top: 0;
+
+    li {
+      display: inline-block;
+      margin: 0 0 0 1.5em;
+      position: relative;
+
+      ul {
+        background: #fff;
+        border: 1px solid $secondary;
+        display: none;
+        left: 0;
+        padding: 0;
+        position: absolute;
+        text-align: left;
+        top: 100%;
+        width: 160px;
+        z-index: 999;
+  
+        ul {
+          left: 100%;
+          position: absolute;
+          top: -1px;
+        }
+      }
+
+      &:hover > ul {
+        display: block;
+      }
+
+      li {
+        display: block;
+        margin: 0;
+
+        a {
+          display: block;
+          padding: 0.5em;
+        }
+      }
+    }
+  }
+}

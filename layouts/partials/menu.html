@@ -1,0 +1,13 @@
+<ul>
+  {{ range $item := .menu }}
+  <li {{ if eq $.page.URL $item.URL }}class="current"{{ end }}>
+    <a href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">{{ $item.Name }}</a>
+    {{ if gt ($item.Children | len) 0 }}
+      {{ $menu := $item.Children }}
+      {{ $page := $.page }}
+      {{ $include_dict := dict "menu" $menu "page" $page }}
+      {{ partial "menu.html" $include_dict }}
+    {{ end }}
+  </li>
+  {{ end }}
+</ul>

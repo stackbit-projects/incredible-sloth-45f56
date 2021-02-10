@@ -1,0 +1,302 @@
+stackbitVersion: ~0.2.0
+ssgName: hugo
+ssgVersion: 0.1.12
+buildCommand: ./ssg-build.sh
+publishDir: public
+staticDir: static
+uploadDir: images
+dataDir: data
+pagesDir: content
+pageLayoutKey: layout
+metadata:
+  title: universal
+  description: A starter theme for Unibit
+  author: Stackbit
+  authorURL: 'https://www.stackbit.com'
+  images:
+    small: images/demo-256x192.png
+    large: images/demo-1024x768.png
+stackbit_banner:
+  show_banner: false
+  name: Universal
+  create_url: 'https://app.stackbit.com/create?theme=universal'
+  github_url: 'https://github.com/stackbithq/stackbit-theme-universal'
+models:
+  config:
+    type: config
+    label: Config
+    fields:
+      - type: string
+        name: title
+        label: Title
+        description: Site title
+        required: true
+      - type: string
+        name: baseURL
+        label: Base URL
+        description: Hostname (and path) to the root
+        hidden: true
+      - type: object
+        name: params
+        label: Params
+        description: Site parameters
+        required: true
+        fields:
+          - type: image
+            name: logo
+            label: Logo
+            description: the path of the logo image
+            required: true
+          - type: string
+            name: docs_url
+            label: Documentation Base URL
+            description: the domain name of the external documentation site
+            required: true
+      - type: site_menus
+        name: menu
+        label: Site Menus
+        description: Menu items not related to a specific page
+      - type: list
+        name: disableKinds
+        label: Disable Kinds
+        description: Enable disabling of all pages of the specified Kinds.
+        items:
+          type: enum
+          options:
+            - page
+            - home
+            - section
+            - taxonomy
+            - taxonomyTerm
+            - RSS
+            - sitemap
+            - robotsTXT
+            - '404'
+        hidden: true
+      - type: boolean
+        name: uglyURLs
+        label: Ugly URLs
+        description: >-
+          When enabled, creates URL of the form /filename.html instead of
+          /filename/.
+        hidden: true
+  home:
+    type: page
+    label: Home
+    template: home
+    file: _index.md
+    hideContent: false
+    singleInstance: true
+    fields:
+      - type: string
+        name: title
+        label: Title
+        description: The title of the page.
+        required: true
+      - type: string
+        name: heading
+        label: Heading
+        description: The heading displayed on the homepage
+      - type: boolean
+        name: show_button
+        label: Show Button
+        description: Show or hide the button on the hompage
+      - type: string
+        name: homepage_button_link
+        label: Button URL
+        description: Button link
+      - type: string
+        name: homepage_button_text
+        label: Button Text
+        description: Text displayed in the button
+      - type: page_menus
+        name: menu
+        label: Home Menus
+        description: Which menus should this page show up in
+  links:
+    type: data
+    file: links.json
+    label: Supported Platforms
+    fields:
+      - type: list
+        name: ssg
+        label: Static Site Generators
+        description: A list of static site generators supported by Stackbit
+        items:
+          type: object
+          labelField: title
+          fields:
+            - type: string
+              name: title
+              label: Title
+              required: true
+            - type: string
+              name: url
+              label: URL
+              widget: url
+              required: true
+      - type: list
+        name: cms
+        label: Headless CMS
+        description: A list of headless CMS supported by Stackbit
+        items:
+          type: object
+          labelField: title
+          fields:
+            - type: string
+              name: title
+              label: Title
+              required: true
+            - type: string
+              name: url
+              label: URL
+              widget: url
+              required: true
+  feature:
+    type: page
+    label: Feature
+    template: feature
+    folder: features
+    fields:
+      - type: string
+        name: title
+        label: Title
+        description: The title of the page.
+        required: true
+      - type: string
+        name: description
+        label: Description
+        description: The text shown just below the features title.
+      - type: image
+        name: image_thumbnail
+        label: Thumbnail Image
+        description: The image shown in the feature.
+      - type: string
+        name: button_link
+        label: Button Link
+        description: The button link
+      - type: string
+        name: button_text
+        label: Button Text
+        description: The button text
+      - type: page_menus
+        name: menu
+        label: Feature Menus
+        description: Which menus should this page show up in
+  features:
+    type: page
+    label: Features
+    template: features
+    fields:
+      - type: string
+        name: title
+        label: Title
+        description: The title of the page.
+        required: true
+      - type: page_menus
+        name: menu
+        label: Features Menus
+        description: Which menus should this page show up in
+  about:
+    type: page
+    label: About
+    template: basic
+    fields:
+      - type: string
+        name: title
+        label: Title
+        description: The title of the page.
+        required: true
+      - type: page_menus
+        name: menu
+        label: About Menus
+        description: Which menus should this page show up in
+  site_menus:
+    type: object
+    label: Site Menus
+    labelField: null
+    description: >-
+      Site menus model, defines list of menus that can be specified from within
+      site configuration
+    fields:
+      - type: list
+        name: main
+        label: Main menu
+        description: List of items for Main menu
+        items:
+          type: site_menu_item
+      - type: list
+        name: secondary
+        label: Secondary menu
+        description: List of items for Secondary menu
+        items:
+          type: site_menu_item
+  site_menu_item:
+    type: object
+    label: Site Menu Item
+    labelField: name
+    description: 'Site menu item model, defines fields for a single site menu item'
+    fields:
+      - type: string
+        name: identifier
+        label: Identifier
+        description: >-
+          The identifier of a menu item could be used as a parent menu of
+          another menu item
+        required: true
+      - type: string
+        name: name
+        label: Title
+        description: The title of the menu item
+        required: true
+      - type: string
+        name: url
+        label: URL
+        description: The URL the menu item links to
+        required: true
+      - type: number
+        name: weight
+        label: Weight
+        description: Position for sorting
+      - type: string
+        name: parent
+        label: Parent Menu Identifier
+        description: The parent of an entry should be the identifier of another entry.
+  page_menus:
+    type: object
+    label: Page Menus
+    labelField: null
+    description: 'Page menus model, defines menus that can be specified from within pages'
+    fields:
+      - type: page_menu_item
+        name: main
+        label: Main menu item
+        description: Main menu item for this page
+      - type: page_menu_item
+        name: secondary
+        label: Secondary menu item
+        description: Secondary menu item for this page
+  page_menu_item:
+    type: object
+    label: Page Menu Item
+    labelField: name
+    description: 'Page menu item model, defines fields for a single page menu item'
+    fields:
+      - type: string
+        name: name
+        label: Title
+        description: The title of the menu item
+      - type: number
+        name: weight
+        label: Weight
+        description: Position for sorting
+      - type: string
+        name: identifier
+        label: Identifier
+        description: >-
+          The identifier of a menu item could be used as a parent menu of
+          another menu item
+      - type: string
+        name: parent
+        label: Parent Menu Identifier
+        description: The parent of an entry should be the identifier of another entry.

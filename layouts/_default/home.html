@@ -1,0 +1,32 @@
+{{ define "content" }}
+
+<div class="home">
+  
+  <h1>{{ .Params.heading }}</h1>
+  {{ .Content }}
+
+  {{ if .Site.Data.links.ssg }}
+  <h5>Supported SSG</h5>
+  <ul>
+  {{ range $link := .Site.Data.links.ssg }}
+    <li>{{ $link.title }}</li>
+  {{ end }}
+  </ul>
+  {{ end }}
+
+  {{ if .Site.Data.links.cms }}
+  <h5>Supported CMS</h5>
+  <ul>
+  {{ range $link := .Site.Data.links.cms }}
+    <li>{{ $link.title }}</li>
+  {{ end }}
+  </ul>
+  {{ end }}
+
+  {{ if .Params.show_button }}
+    {{ partial "homepage_button.html" . }}
+  {{ end }}
+  
+</div>
+
+{{ end }}

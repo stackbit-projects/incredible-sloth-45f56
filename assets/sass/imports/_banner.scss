@@ -1,0 +1,10 @@
+body.has-theme-bar {
+    .site-header {
+        margin-top: 60px;
+    }
+
+    #theme-bar {
+        position: fixed;
+        top: 0;
+    }
+}

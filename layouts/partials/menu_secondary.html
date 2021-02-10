@@ -1,0 +1,7 @@
+<ul>
+  {{ range $item := .Site.Menus.secondary }}
+  <li {{ if eq $item.URL $.URL }}class="active"{{ end }}>
+    <a href="{{ $item.URL | relURL }}">{{ $item.Name }}</a>
+  </li>
+  {{ end }}
+</ul>
